@@ -22,6 +22,21 @@ key_pressed_is_listening = 0
 key_pressed_cache = []
 
 
+def send_temp_char(temp_char):
+    time.sleep(0.02)
+    if(temp_char not in VALID_KEYS):
+        if(temp_char == ":"):
+            keyboard.press('shift')
+            keyboard.send(';')
+            keyboard.release('shift')                                
+        else:
+            keyboard.press('shift')
+            keyboard.send(temp_char)
+            keyboard.release('shift')                                
+    else:
+        keyboard.send(temp_char)
+
+
 def get_parameters(key_list):
     temp = [item.split() for item in ' '.join(key_list).split('==') if item]
     return temp[0], temp[1]
@@ -58,7 +73,6 @@ def run_command(key_list):
                     if(" " in line[0]):
                         line[0] = line[0].split(" ")[0]
                     if(cache_string == line[0]):
- #                       print(line[1])
                         key_pressed_is_listening = 0
                         key_pressed_before = ""
                         key_pressed_cache = []
@@ -83,23 +97,14 @@ def run_command(key_list):
                             temp_char = line[1][j]
                             if(temp_char.isupper()):
                                 temp_char = 'shift+'+temp_char.lower()
+
                             if(temp_char == "$"):
                                 for y in range(line[1].count("$")):
                                     for z in range(len(temp_arg[y])):
-                                        keyboard.send(temp_arg[y][z])
+                                        send_temp_char(temp_arg[y][z])
                             else:
-                                if(temp_char not in VALID_KEYS):
-#                                    temp_char = 'shift+'+temp_char
-                                    if(temp_char == ":"):
-                                        keyboard.press('shift')
-                                        keyboard.send(';')
-                                        keyboard.release('shift')                                
-                                    else:
-                                        keyboard.press('shift')
-                                        keyboard.send(temp_char)
-                                        keyboard.release('shift')                                
-                                else:
-                                    keyboard.send(temp_char)
+                                send_temp_char(temp_char)
+
                         break
 
 
@@ -117,7 +122,7 @@ def on_press_reaction(event):
             key_pressed_cache.append(" ")
         elif(event.name == "backspace"):
             key_pressed_cache.pop()
-        else:
+        elif(event.name != "shift" and event.name !="ctrl" and event.name !="alt"):
             key_pressed_cache.append(event.name)
     
     elif(key_pressed_is_listening and (event.name == "\\")):
