@@ -2,6 +2,8 @@
 
 sudo pip3 install keyboard
 
+sudo apt-get install xdotool
+
 sudo chmod a+rwx master_macro.config
 
 No .bashrc:

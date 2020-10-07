@@ -7,7 +7,7 @@ import keyboard
 
 CONFIG_PATH = "master_macro.config"
 TEXT_EDITOR = "gedit"
-VALID_KEYS = "1234567890-=qwertyuiop[asdfghjklç]\zxcvbnm,.;/"
+VALID_KEYS = "1234567890-=qwertyuiop[asdfghjklç]zxcvbnm,.;/\\"
 
 
 if not os.path.exists(CONFIG_PATH):
@@ -19,8 +19,14 @@ key_pressed_cache = []
 
 
 def send_temp_char(temp_char):
+#    print("temp_char: ",temp_char)
+
     if(temp_char in VALID_KEYS):
-        keyboard.send(temp_char)
+        if(temp_char == "\\"):
+            # A única forma que encontrei de fazer o programa conseguir digitar uma contrabarra
+            os.system("xdotool type \\\\")
+        else:
+            keyboard.send(temp_char)
     else:
         if(temp_char == ":"):
             keyboard.press('shift')
@@ -62,6 +68,7 @@ def run_command(key_list):
                     if(" " in line[0]):
                         line[0] = line[0].split(" ")[0]
                     if(cache_string == line[0]):
+#                        print("line[1]: ",line[1])
                         key_pressed_is_listening = 0
                         key_pressed_before = ""
                         key_pressed_cache = []
