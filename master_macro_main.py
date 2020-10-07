@@ -19,7 +19,9 @@ key_pressed_cache = []
 
 
 def send_temp_char(temp_char):
-    if(temp_char not in VALID_KEYS):
+    if(temp_char in VALID_KEYS):
+        keyboard.send(temp_char)
+    else:
         if(temp_char == ":"):
             keyboard.press('shift')
             keyboard.send(';')
@@ -28,9 +30,6 @@ def send_temp_char(temp_char):
             keyboard.press('shift')
             keyboard.send(temp_char)
             keyboard.release('shift')                                
-    else:
-        keyboard.send(temp_char)
-
 
 def run_command(key_list):
     global key_pressed_before
@@ -44,7 +43,7 @@ def run_command(key_list):
 
 #Essa parte é onde se coloca os comandos em que programação é necessária. Cuidado para não colocar os mesmos comandos do config
     if(cache_string == 'new'):
-        temp_command =TEXT_EDITOR +" " + CONFIG_PATH
+        temp_command =TEXT_EDITOR +" " + CONFIG_PATH + " &"
         os.system(temp_command)
     elif(cache_string[:5] == 'shell'):
         temp_command = cache_string[6:]
@@ -112,7 +111,7 @@ def on_press_reaction(event):
             key_pressed_cache.append(" ")
         elif(event.name == "backspace"):
             key_pressed_cache.pop()
-        elif(event.name != "shift" and event.name !="ctrl" and event.name !="alt"):
+        elif(event.name != "shift" and event.name != "ctrl" and event.name != "alt"):
             key_pressed_cache.append(event.name)
     
     elif(key_pressed_is_listening and (event.name == "\\")):
