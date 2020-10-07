@@ -23,7 +23,6 @@ key_pressed_cache = []
 
 
 def send_temp_char(temp_char):
-    time.sleep(0.02)
     if(temp_char not in VALID_KEYS):
         if(temp_char == ":"):
             keyboard.press('shift')
