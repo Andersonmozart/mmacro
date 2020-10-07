@@ -24,6 +24,9 @@ def send_temp_char(temp_char):
     if(temp_char in VALID_KEYS):
         if(temp_char == "\\"):
             # A única forma que encontrei de fazer o programa conseguir digitar uma contrabarra
+            # Você pode pensar "Uau, mas esse xdotool é muito bom. Por que não usamos ele para digitar em vez do módulo keyboard?"
+            # A resposta é que a única vantagem do xdotool seria digitar letras que o módulo do python não consegue (como acentos), entretando ,se fizer um teste do tipo: xdotool type "áááéé", vai ver que é muito lento, o que é exatamente o que eu não desejo para o programa.
+            # E ele é mais lento que o módulo do keyboard, então até o momento, o módulo é a solução mais viável.
             os.system("xdotool type \\\\")
         else:
             keyboard.send(temp_char)
