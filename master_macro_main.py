@@ -5,10 +5,6 @@ import os.path
 import time
 import keyboard
 
-#keyboard.add_abbreviation('\\\\pass', 'password type here @#@#@')
-#keyboard.add_hotkey('a,a', lambda: keyboard.write('foobar'))
-#keyboard.wait()
-
 CONFIG_PATH = "master_macro.config"
 TEXT_EDITOR = "gedit"
 VALID_KEYS = "1234567890-=qwertyuiop[asdfghjklç]\zxcvbnm,.;/"
@@ -36,16 +32,11 @@ def send_temp_char(temp_char):
         keyboard.send(temp_char)
 
 
-def get_parameters(key_list):
-    temp = [item.split() for item in ' '.join(key_list).split('==') if item]
-    return temp[0], temp[1]
-
 def run_command(key_list):
     global key_pressed_before
     global key_pressed_is_listening
     global key_pressed_cache
     cache_string = ''.join(key_list)
-#    short_cut, short_cut_command = get_parameters(key_list)
 
 #    Apagar os caracteres para inserir os novos. +3 por causa das contrabarras
     for i in range(len(cache_string)+3):
@@ -55,7 +46,7 @@ def run_command(key_list):
     if(cache_string == 'new'):
         temp_command =TEXT_EDITOR +" " + CONFIG_PATH
         os.system(temp_command)
-    elif(cache_string[:5] =='shell'):
+    elif(cache_string[:5] == 'shell'):
         temp_command = cache_string[6:]
         os.system(temp_command)
 #############################################
