@@ -15,11 +15,11 @@ Onde MMACRO_PATH é a pasta onde mmacro foi clonado
 
 Para usar:
 
-Em algum local onde é possível escrever, digite \\macro\, onde macro == os comandos da coluna esquerda do arquivo master_macro.config.
+Em algum local onde é possível escrever, digite \\\\macro\\, onde macro == os comandos da coluna esquerda do arquivo master_macro.config.
 
-Assim, se digitar: \\wpp\, ele irá apagar esses dígitos e digitar: web.whatsapp.com no lugar.
+Assim, se digitar: \\\\wpp\\, ele irá apagar esses dígitos e digitar: web.whatsapp.com no lugar.
 
-\\for 40\==for(int i = 0; i < 40; i++), onde o 40 pode ser qualquer valor/variável
+\\\\for 40\\==for(int i = 0; i < 40; i++), onde o 40 pode ser qualquer valor/variável
 
 
 
