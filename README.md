@@ -17,7 +17,7 @@ Onde MMACRO_PATH é a pasta onde mmacro foi clonado
 
 Para usar:
 
-Em algum local onde é possível escrever, digite \\\\macro\\, onde macro == os comandos da coluna esquerda do arquivo master_macro.config.
+Em algum local onde é possível escrever, digite \\\\macro\\, onde macro == os comandos da coluna esquerda do arquivo master_macro.config. Se estiver lendo fora do github, a ativação do algoritmo demandas duas contrabarras, o nome do macro, e mais uma contrabarra.
 
 Assim, se digitar: \\\\wpp\\, ele irá apagar esses dígitos e digitar: web.whatsapp.com no lugar.
 
