@@ -49,6 +49,7 @@ def run_command(key_list):
 #    Apagar os caracteres para inserir os novos. +3 por causa das contrabarras
     for i in range(len(cache_string)+3):
         keyboard.press_and_release('backspace')
+        time.sleep(0.02)
 
 #Essa parte é onde se coloca os comandos em que programação é necessária. Cuidado para não colocar os mesmos comandos do config
     if(cache_string == 'new'):
