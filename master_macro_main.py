@@ -89,6 +89,9 @@ def run_command(key_list):
                             while("$" in temp_command):
                                 temp_command = temp_command.replace("$",temp_arg[cont_sys2],1)
                                 cont_sys2 +=1
+                            #Sem as duas linhas abaixo, as teclas referente aos sinais do teclado numérico enviam caracteres não reconhecidos para o python
+                            temp_command = temp_command.replace("÷", "/")
+                            temp_command = temp_command.replace("×","*")
 
                             line[1] = os.popen(temp_command).read().rstrip()
 
