@@ -45,7 +45,6 @@ def run_command(key_list):
     global key_pressed_is_listening
     global key_pressed_cache
     cache_string = ''.join(key_list)
-
 #    Apagar os caracteres para inserir os novos. +3 por causa das contrabarras
     for i in range(len(cache_string)+3):
         keyboard.press_and_release('backspace')
@@ -72,7 +71,7 @@ def run_command(key_list):
                     if(" " in line[0]):
                         line[0] = line[0].split(" ")[0]
                     if(cache_string == line[0]):
-#                        print("line[1]: ",line[1])
+                        print("line[1]: ",line[1])
                         key_pressed_is_listening = 0
                         key_pressed_before = ""
                         key_pressed_cache = []
@@ -127,7 +126,6 @@ def on_press_reaction(event):
             key_pressed_cache.pop()
         elif(event.name != "shift" and event.name != "ctrl" and event.name != "alt"):
             key_pressed_cache.append(event.name)
-    
     elif(key_pressed_is_listening and (event.name == "\\")):
         key_pressed_is_listening = 0
 #        print(key_pressed_cache)
