@@ -16,7 +16,7 @@ if not os.path.exists(CONFIG_PATH):
 key_pressed_before = ""
 key_pressed_is_listening = 0
 key_pressed_cache = []
-
+key_pressed_blocked = 0
 
 def send_temp_char(temp_char):
 #    print("temp_char: ",temp_char)
@@ -119,6 +119,12 @@ def on_press_reaction(event):
     global key_pressed_before
     global key_pressed_is_listening
     global key_pressed_cache
+    global key_pressed_blocked
+    if(event.name == "esc"):
+        key_pressed_blocked = not key_pressed_blocked
+        print("Key pressed blocked ", key_pressed_blocked)
+    if(key_pressed_blocked):
+        return
     if(key_pressed_is_listening and (event.name != "\\")):
         if(event.name == "space"):
             key_pressed_cache.append(" ")
